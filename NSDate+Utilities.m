@@ -15,7 +15,7 @@
 #import "NSDate+Utilities.h"
 
 // Thanks, AshFurrow
-static const unsigned componentFlags = (NSYearCalendarUnit| NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSWeekdayCalendarUnit | NSWeekdayOrdinalCalendarUnit);
+static const unsigned componentFlags = (NSYearCalendarUnit| NSMonthCalendarUnit | NSDayCalendarUnit | NSCalendarUnitWeekOfYear |  NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSWeekdayCalendarUnit | NSWeekdayOrdinalCalendarUnit);
 
 @implementation NSDate (Utilities)
 
@@ -178,7 +178,7 @@ static const unsigned componentFlags = (NSYearCalendarUnit| NSMonthCalendarUnit 
 	
 	// Must be same week. 12/31 and 1/1 will both be week "1" if they are in the same week
 	if (components1.weekOfYear != components2.weekOfYear) return NO;
-	
+    
 	// Must have a time interval under 1 week. Thanks @aclark
 	return (abs([self timeIntervalSinceDate:aDate]) < D_WEEK);
 }
